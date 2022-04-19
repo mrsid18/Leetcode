@@ -7,8 +7,7 @@ class Solution:
                 return n
             if n in cache:
                 return cache[n]
-            ans = recur(n-1) + recur(n-2)
-            cache[n] = ans
-            return ans
+            cache[n] = recur(n-1) + recur(n-2)
+            return cache[n]
         
         return recur(n)
