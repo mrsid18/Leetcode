@@ -5,7 +5,8 @@ class Solution:
         def recur(n):
             if n in cache:
                 return cache[n]
-            cache[n] = recur(n-1) + recur(n-2)
-            return cache[n]
+            ans = recur(n-1) + recur(n-2)
+            cache[n] = ans
+            return ans
         
         return recur(n)
