@@ -1,8 +1,14 @@
 class Solution:
     def fib(self, n: int) -> int:
-        if n==0:
-            return 0
-        elif n==1:
-            return 1
+        cache = {}
         
-        return self.fib(n-1) + self.fib(n-2) 
+        def recur(n):
+            if n<=1:
+                return n
+            if n in cache:
+                return cache[n]
+            ans = recur(n-1) + recur(n-2)
+            cache[n] = ans
+            return ans
+        
+        return recur(n)
