@@ -18,10 +18,11 @@ class Solution:
         if root is None:
             return 
         
-        rootTraverse = []
-        self.traverse(root, rootTraverse)
-        if rootTraverse == self.subRootArr:
-            return True
+        if (str(root.val)+'t0') == self.subRootArr[0]:
+            rootTraverse = []
+            self.traverse(root, rootTraverse)
+            if rootTraverse == self.subRootArr:
+                return True
         left = self.compare(root.left)
         if left:
             return True
