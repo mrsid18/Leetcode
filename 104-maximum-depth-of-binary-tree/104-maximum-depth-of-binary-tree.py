@@ -6,13 +6,6 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def md(self, root):
-        if root is None:
-            return
-        
-        self.md(root.left)
-        self.md(root.right)
-    
     def maxDepth(self, root):
         if not root:
             return 0
