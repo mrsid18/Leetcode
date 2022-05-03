@@ -9,22 +9,18 @@ class Solution:
         output = head
         while list1 and list2:
             if list1.val>list2.val:
-                head.next = ListNode(list2.val)
+                head.next = list2
                 list2 = list2.next
             else:
-                head.next = ListNode(list1.val)
+                head.next = list1
                 list1 = list1.next
             head = head.next
         
-        while list1:
-            head.next = ListNode(list1.val)
-            head = head.next
-            list1 = list1.next
+        if list1:
+            head.next = list1
         
-        while list2:
-            head.next = ListNode(list2.val)
-            head = head.next
-            list2 = list2.next
+        if list2:
+            head.next = list2
         
         return output.next
             
