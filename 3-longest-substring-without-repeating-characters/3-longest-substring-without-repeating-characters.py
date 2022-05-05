@@ -4,11 +4,11 @@ class Solution:
             return 0
         l,r = 0, 1
         maxL = 1
-        while l < len(s)-1:
+        length = len(s)
+        while l < length-1 and maxL != length:
             r=l+1
-            while r < len(s):
+            while r < length:
                 if s[r] in s[l:r]:
-                    # maxL = max(maxL, r-l)
                     break
                 maxL = max(maxL, r-l+1)
                 r+=1
