@@ -5,7 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def dfs(self,node, pos, level ,output):
+        if not node:
+            return None
+        
+        output.append(str(node.val)+pos+str(level))
+        self.dfs(node.left, 'l', level+1, output)
+        self.dfs(node.right, 'r', level+1, output)
+        
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        out1,out2 = [],[]
+        self.dfs(p, 'l', 0, out1)
+        self.dfs(q, 'l', 0, out2)
+        return out1==out2
         que1,que2 = [], []
         if p:
             que1 = deque([[p,'l']])
