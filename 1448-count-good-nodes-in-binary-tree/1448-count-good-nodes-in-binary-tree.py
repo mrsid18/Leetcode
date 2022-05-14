@@ -7,18 +7,18 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         output = []
-        def test(node,path):
+        def test(node,maxVal):
             if not node:
                 return
             
-            path.append(node.val)
-            # print(path)
-            if max(path)<=node.val:
+            if maxVal<=node.val:
                 output.append(node.val)
-            test(node.left, path[:])
-            test(node.right, path[:])
+                maxVal = node.val
+            
+            test(node.left, maxVal)
+            test(node.right, maxVal)
         
-        test(root, [])
+        test(root, root.val)
         # print(output)
         return len(output)
             
