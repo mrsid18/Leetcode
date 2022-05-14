@@ -6,13 +6,13 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        output = []
+        self.output = 0
         def test(node,maxVal):
             if not node:
                 return
             
             if maxVal<=node.val:
-                output.append(node.val)
+                self.output += 1
                 maxVal = node.val
             
             test(node.left, maxVal)
@@ -20,7 +20,7 @@ class Solution:
         
         test(root, root.val)
         # print(output)
-        return len(output)
+        return self.output
             
                 
         
