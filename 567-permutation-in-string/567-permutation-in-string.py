@@ -4,13 +4,13 @@ class Solution:
             return False
         charset1,charset2 = {}, {}
         
-        for i in range(len(s1)):
-            charset1[s1[i]] = 1 + charset1.get(s1[i], 0)
-        
         for i in range(len(s1)-1):
+            charset1[s1[i]] = 1 + charset1.get(s1[i], 0)
             charset2[s2[i]] = 1 + charset2.get(s2[i], 0)
         
-        l, r=0, len(s1)-1
+        window = len(s1)-1
+        charset1[s1[window]] = 1 + charset1.get(s1[window], 0)
+        l, r=0, window
         
         while r<len(s2):
             charset2[s2[r]] = 1+charset2.get(s2[r], 0)
