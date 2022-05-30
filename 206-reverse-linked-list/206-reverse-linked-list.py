@@ -13,8 +13,7 @@ class Solution:
             cur.next = prev
             return reverse(cur, temp)
         
-        tail = reverse(None, head)
-        return tail
+        return reverse(None, head)
             
         
         
