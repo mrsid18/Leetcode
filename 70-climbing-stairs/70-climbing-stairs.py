@@ -1,12 +1,9 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        cache = {1:1, 2:2}
+        l, r = 1,1
         
-        def cs(n):
-            if n in cache:
-                return cache[n]
+        for i in range(n-1):
+            r, l = l, l+r
             
-            cache[n] = cs(n-1)+cs(n-2)
-            return cache[n]
-        
-        return cs(n)
+        return l
+            
