@@ -5,7 +5,8 @@ class Solution:
         def cs(n):
             if n in cache:
                 return cache[n]
-            ans = cs(n-1) + cs(n-2)
-            cache[n] = ans
-            return ans
+            
+            cache[n] = cs(n-1)+cs(n-2)
+            return cache[n]
+        
         return cs(n)
