@@ -1,8 +1,15 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        r1, r2 = 0, 0
+        # if len(nums)==2:
+        #     return max(nums)
+        cache = {0:nums[0], -1:0}
+        def res(n):
+            if n in cache:
+                return cache[n]
+            cache[n] = max(nums[n]+res(n-2), res(n-1))
+            return cache[n]
         
-        for n in nums:
-            r1,r2 = r2, max(n+r1, r2)
+        return res(len(nums)-1)
+    
+    
         
-        return max(r1, r2)
