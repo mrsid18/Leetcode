@@ -7,20 +7,14 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        tp = p if p.val>q.val else q
-        tq = p if p.val<q.val else q
-        
         def dfs(node):
             if not node:
                 return 
             
-            if tq.val<=node.val<=tp.val:
-                print(node.val)
-                return node
-            
-            if node.val>tq.val:
+            if node.val>q.val and node.val>p.val:
                 return dfs(node.left)
-            else:
+            elif node.val < q.val and node.val<p.val:
                 return dfs(node.right)
+            else: return node
         
         return dfs(root)
