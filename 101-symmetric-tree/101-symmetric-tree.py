@@ -5,48 +5,36 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def lsf(self, root, output, s):
-        if not root:
-            return 
-        
-        output.append(str(root.val)+s)
-        self.lsf(root.left, output, 'l')
-        self.lsf(root.right, output, 'r')
-        
-    def rsf(self, root, output, s):
-        if not root:
-            return 
-        
-        output.append(str(root.val)+s)
-        self.rsf(root.right, output, 'l')
-        self.rsf(root.left, output, 'r')
-        
-    
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
+        #simple traversal problem
+        lo = []
+        ro = []
+        def lfs(node):
+            if not node:
+                lo.append(None)
+                return
+            
+            lo.append(node.val)
+            lfs(node.left)
+            lfs(node.right)
+            
+        def rfs(node):
+            if not node:
+                ro.append(None)
+                return
+            
+            ro.append(node.val)
+            rfs(node.right)
+            rfs(node.left)
+            
+        lfs(root.left)
+        rfs(root.right)
         
-        if not root.left and not root.right:
-            return True
-        
-        if not root.left or not root.right:
-            return False
-        
-        leftList = []
-        self.rsf(root, leftList, '')
-        
-        rightList = []
-        self.lsf(root, rightList, '')
-        
-        print(leftList, rightList)
-        
-        if len(leftList) != len(rightList):
-            return False
-        
-        # for idx,lnum in enumerate(leftList):
-        if str(leftList) != str(rightList):
-                return False
-        
-        return True
-        
+        return lo==ro
+            
+            
+            
+            
+            
+            
         
