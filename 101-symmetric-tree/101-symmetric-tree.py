@@ -6,31 +6,13 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        #simple traversal problem
-        lo = []
-        ro = []
-        def lfs(node):
-            if not node:
-                lo.append(None)
-                return
+        def traverse(n1, n2):
+            if (not n1 and not n2): return True
+            if (not n1 or not n2): return False
             
-            lo.append(node.val)
-            lfs(node.left)
-            lfs(node.right)
-            
-        def rfs(node):
-            if not node:
-                ro.append(None)
-                return
-            
-            ro.append(node.val)
-            rfs(node.right)
-            rfs(node.left)
-            
-        lfs(root.left)
-        rfs(root.right)
+            return n1.val==n2.val and traverse(n1.left,n2.right) and traverse(n1.right, n2.left)
         
-        return lo==ro
+        return traverse(root.left, root.right)
             
             
             
