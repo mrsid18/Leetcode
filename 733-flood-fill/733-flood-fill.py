@@ -5,7 +5,6 @@ class Solution:
         visited = set()
         val = image[sr][sc]
         rows,cols = len(image), len(image[0])
-        print(rows,cols)
         def dfs(r,c):
             if r not in range(rows) or c not in range(cols) or (r,c) in visited or image[r][c]!=val:
                 return
