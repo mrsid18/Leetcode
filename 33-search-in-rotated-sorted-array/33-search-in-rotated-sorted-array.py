@@ -8,19 +8,19 @@ class Solution:
             if nums[mid]==target:
                 return mid
             
-            #left sorted 
-            
-            if nums[l]<=nums[mid]:
+            #left sorted array
+            if nums[mid]>=nums[l]:
                 if target<nums[l] or target>nums[mid]:
-                    l=mid+1
+                    l = mid+1
                 else:
-                    r=mid-1
+                    r = mid-1
+            #right sorted array
             else:
                 if target<nums[mid] or target>nums[r]:
                     r=mid-1
                 else:
                     l=mid+1
-            
+        
         return -1
-                    
+                
         
