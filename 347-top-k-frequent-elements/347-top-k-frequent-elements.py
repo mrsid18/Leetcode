@@ -5,17 +5,23 @@ class Solution:
         for num in nums:
             hmap[num] = hmap.get(num,0) + 1
         
-        f = list(hmap.values())
-        f.sort(reverse=True)
-        f=f[:k]
+        f = [[] for _ in range(len(nums)+1)]
+        
+        for n,freq in hmap.items():
+            f[freq].append(n)
         
         res = []
-
-        for n, freq in hmap.items():
-            if freq in f:
-                res.append(n)
+        i = len(f)-1
+        print(f)
+        while k:
+            if f[i]:
+                res.append(f[i].pop())
+                k-=1
+            else:
+                i-=1
         
         return res
+            
                 
             
             
