@@ -1,18 +1,12 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        #find the sum of squares of the points
+        for p in points:
+            p.insert(0,p[0]**2+p[1]**2)
         
-        minHeap = []
-        
-        for x,y in points:
-            minHeap.append([x**2+y**2, x, y])
-        
-        heapq.heapify(minHeap)
-        
+        heapq.heapify(points)
         res = []
-        for i in range(k):
-            dist,x,y = heapq.heappop(minHeap)
-            res.append([x,y])
+        for _ in range(k):
+            x,y,z = heapq.heappop(points)
+            res.append([y,z])
         
         return res
-                
