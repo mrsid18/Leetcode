@@ -1,7 +1,5 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        nums.sort()
-        
         hmap = {}
         
         for num in nums:
