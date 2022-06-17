@@ -4,7 +4,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def getkth(self, node, k):
+    def getKth(self, node, k):
         while node and k:
             node = node.next
             k-=1
@@ -15,20 +15,20 @@ class Solution:
         groupPrev = dummy
         
         while True:
-            kth = self.getkth(groupPrev,k)
+            kth = self.getKth(groupPrev, k)
             
-            if not kth: break
+            if not kth:
+                break
             
             groupNext = kth.next
             
-            # reverse list
-            prev, cur = kth.next,groupPrev.next
+            prev, cur = groupNext, groupPrev.next
             
-            while cur != groupNext:
+            while cur!=groupNext:
                 tmp = cur.next
                 cur.next = prev
                 prev = cur
-                cur = tmp
+                cur =tmp
             
             tmp = groupPrev.next
             groupPrev.next = kth
@@ -36,6 +36,7 @@ class Solution:
             
         
         return dummy.next
+            
         
         
         
