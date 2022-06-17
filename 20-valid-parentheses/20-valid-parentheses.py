@@ -2,22 +2,24 @@ from queue import LifoQueue
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        paran = {
-            "}":"{",
-            ")":"(",
-            "]":"["
+        brackets = {
+            '}':'{',
+            ']':'[',
+            ')':'('
         }
         
         stack = []
         
         for c in s:
-            if c in paran and stack:
-                if paran[c] != stack.pop():
+            if c in brackets and stack:
+                if brackets[c] != stack.pop():
                     return False
             else:
                 stack.append(c)
         
-        if len(stack):
-            return False
+        if stack: return False
+        
         return True
+                
+        
         
