@@ -8,8 +8,11 @@ class Solution:
         for word in words:
             word = word.lower()
             hmap[word] = hmap.get(word, 0) + 1
-            if hmap[word]>m and word not in banned:
-                m = hmap[word]
-                res = word
-            
+           
+        
+        for w,freq in hmap.items():
+            if freq>m and w not in banned:
+                m = freq
+                res = w
+        
         return res
