@@ -25,11 +25,10 @@ class Solution:
                 
         
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists: return
-        while len(lists)!=1:
-            n = len(lists)
-            for i in range(0, n, 2):
-                l = self.merge2lists(lists.pop(), lists.pop())
-                lists.insert(0, l)
+        if not lists: return 
+        while len(lists)>1:
+            l1 = lists.pop()
+            l2 = lists.pop()
+            lists.append(self.merge2lists(l1, l2))
+        
         return lists[0]
-            
