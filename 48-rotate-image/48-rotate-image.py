@@ -8,8 +8,7 @@ class Solution:
         visited = set()
         for i in range(len(matrix)):
             for j in range(len(matrix)):
-                if (i,j) not in visited:
+                if (i,j) not in visited and (j, i) not in visited:
                     matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
                     visited.add((i, j))
-                    visited.add((j, i))
                
