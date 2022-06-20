@@ -3,13 +3,12 @@ class Solution:
         #buy low sell high
         res = 0
         
-        l, r = 0, 1
+        min_price = prices[0]
         
-        while r<len(prices):
-            d = prices[r]-prices[l]
-            if d<0: l = r
+        for p in prices:
+            d = p - min_price
+            if d<0: min_price = p
             res = max(res, d)
-            r+=1
         
         return res
         
