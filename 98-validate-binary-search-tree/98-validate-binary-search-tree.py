@@ -6,9 +6,8 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        #lhs: min(till that point)<n<node.val
-        #rhs: node.val<n<max(till that point)
-        
+            # left hand side consists of -inf<node.val<min val
+              # rhs cond. min val <
         def dfs(node, l, r):
             if not node:
                 return True
@@ -18,9 +17,3 @@ class Solution:
             else: return False
         
         return dfs(root, -inf, inf)
-    
-    
-    
-        
-       
-        
