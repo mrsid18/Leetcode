@@ -8,6 +8,26 @@ class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         # O(logn) to find an element
         # so we need to know all the elements
+        cur = root
+        stack = []
+        n = 0
+        
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            
+            cur = stack.pop()
+            n+=1
+            
+            if n==k:
+                return cur.val
+            
+            cur = cur.right
+        
+        
+        
+        
         res = []
         def dfs(node):
             if not node:
