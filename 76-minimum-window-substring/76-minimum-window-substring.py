@@ -1,22 +1,32 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        thash = {}
-        shash = {}
-        need, have = 0, 0
-        l, r = 0,0
-        resL, resR = 0, len(s)+1
-        for i in range(len(t)):
-            need += 0 if t[i] in thash else 1
-            thash[t[i]] = thash.get(t[i],0) + 1
+        tmap = {}
+        req = 0
+        for c in t:
+            if c in tmap: tmap[c]+=1
+            else:
+                req+=1
+                tmap[c]=1
+        
+        smap = {}
+        
+        l, r = 0, 0
+        
+        resL, resR = 0, len(s)
+        match = 0
         while r<len(s):
-            shash[s[r]] = shash.get(s[r],0) + 1
+            smap[s[r]] = smap.get(s[r],0)+1
             
-            if s[r] in thash and shash[s[r]]==thash[s[r]]: have+=1 
-            while need==have and l<=r:
-                if resR-resL>=r-l: resL, resR = l, r
-                if s[l] in thash and shash[s[l]] == thash[s[l]]: have -= 1
-                shash[s[l]]-=1 if shash[s[l]] else 0
+            if s[r] in tmap and smap[s[r]]==tmap[s[r]]: match+=1
+                
+            while req==match and l<=r:
+                if r-l<resR-resL: resR, resL = r, l
+                if s[l] in tmap and smap[s[l]]==tmap[s[l]]: match-=1
+                smap[s[l]]-=1
                 l+=1
             
             r+=1
-        return "" if resR == len(s)+1 else s[resL:resR+1]
+        
+        return s[resL:resR+1] if resR!=len(s) else ""
+                
+            
