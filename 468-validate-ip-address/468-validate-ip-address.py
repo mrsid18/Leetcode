@@ -6,7 +6,7 @@ class Solution:
             chunks = IP.split(".")
             for chunk in chunks:
                 if len(chunk)==1:
-                    if not all(c.isdigit() for c in chunk): return "Neither"
+                    if not chunk.isdigit(): return "Neither"
                 else:
                     if not chunk.isdigit() or chunk[0]=='0' or int(chunk)>255:
                         return "Neither"
