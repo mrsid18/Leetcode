@@ -1,22 +1,17 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
+        def dfs(tmp, start, end, remains):
+            if remains==0:
+                ans.append(tmp[:])
+            elif remains>0:
+                for idx in range(start, end):
+                    if idx>start and candidates[idx]==candidates[idx-1]: 
+                        continue
+                    tmp.append(candidates[idx])
+                    dfs(tmp, idx+1, end, remains - candidates[idx])
+                    tmp.pop()
         
-        subsets = []
-        candidates.sort()
-        length = len(candidates)
-        def dfs(i, add):
-            if i==length or add>=target:
-                if add==target: res.append(subsets[:])
-                return
-            
-            
-            subsets.append(candidates[i])
-            dfs(i+1, add+candidates[i])
-            subsets.pop()
-            while i+1<length and candidates[i]==candidates[i+1]:
-                i+=1
-            dfs(i+1, add)
-            
-        dfs(0, 0)
-        return res
+        ans = []
+        candidates.sort(reverse=True)
+        dfs([], 0, len(candidates), target)
+        return ans
