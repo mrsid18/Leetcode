@@ -10,23 +10,23 @@ class Solution:
         self.res = None
         
         def dfs(node):
-            if not node:
-                return False
+            if not node: return False
             
-            mid = node == p or node==q
+            mid = node==p or node==q
             
             l = dfs(node.left)
             r = dfs(node.right)
-                
-            if mid+l+r>=2: 
+            
+            if mid+l+r>=2:
                 self.res = node
             
             return mid or l or r
-            
         dfs(root)
         return self.res
-        
-                        
+    
+            
+            
+            
             
             
             
