@@ -11,7 +11,7 @@ class TimeMap:
         if key in self.store:
             l, r = 0, len(self.store[key])-1
             
-            while l<=r and r<len(self.store[key]):
+            while l<=r:
                 mid=(l+r)//2
                 val, time = self.store[key][mid]
                 if time==timestamp:
