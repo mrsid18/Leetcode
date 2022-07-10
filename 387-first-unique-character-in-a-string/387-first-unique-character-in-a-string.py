@@ -1,6 +1,8 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        for idx,c in enumerate(s):
-            if s.count(c)==1: return idx
+        hmap = Counter(s)
+        
+        for idx, c in enumerate(s):
+            if hmap[c]==1: return idx
         
         return -1
