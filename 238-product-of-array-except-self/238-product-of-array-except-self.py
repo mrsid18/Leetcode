@@ -1,20 +1,16 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        output = []
-        p=1
+        if 0 not in nums:
+            p = prod(nums)
+            return [p//x for x in nums]
         
-        for num in nums:
-            output.append(p)
-            p*=num
+        res = [0]*len(nums)
+        zero = nums.index(0)
+        res[zero] = prod(nums[:zero]) * prod(nums[zero+1:])
         
-        p=1
+        return res
         
-        for idx,num in enumerate(nums[::-1]):
-            output[-1-idx] *= p
-            p*=num
-            
-        return output
-      
+        
         
         
             
