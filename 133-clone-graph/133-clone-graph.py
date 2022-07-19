@@ -8,18 +8,25 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        if not node: return
         hmap = {}
         
+        visited =set()
+        
         def dfs(node):
-            if node in hmap:
-                return hmap[node]
+            if node in visited: return hmap[node]
             
-            clone = Node(node.val)
-            hmap[node] = clone
+            visited.add(node)
+            
+            new = Node(node.val)
+            hmap[node] = new
             
             for n in node.neighbors:
-                clone.neighbors.append(dfs(n))
+                new.neighbors.append(dfs(n))
             
-            return clone
+            return new
         
-        return dfs(node) if node else None
+        
+        return dfs(node)
+        
+                
