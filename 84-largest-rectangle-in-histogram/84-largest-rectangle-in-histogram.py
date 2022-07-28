@@ -11,7 +11,6 @@ class Solution:
                 res[j] += heights[j]*(i-j)
             q.append(i)
         
-        print(res)
         q = deque([])
         for i in range(len(heights)-2, -2, -1):
             while q and heights[i]<heights[q[-1]]:
@@ -19,5 +18,4 @@ class Solution:
                 res[j] += heights[j]*(j-i-1)
             q.append(i)
             
-        print(res)
         return max(res)
