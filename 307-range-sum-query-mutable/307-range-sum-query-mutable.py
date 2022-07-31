@@ -9,9 +9,8 @@ class NumArray:
         self.l = len(nums)
 
     def update(self, index: int, val: int) -> None:
-        self.s -= self.nums[index]
+        self.s = self.s - self.nums[index] + val
         self.nums[index] = val
-        self.s += self.nums[index]
 
     def sumRange(self, left: int, right: int) -> int:
         if right - left > self.l // 2:
