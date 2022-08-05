@@ -8,18 +8,13 @@ class Solution:
         
         res = 2*(n-len(reserved.keys()))
         for i in reserved.keys():
-            if any(col in reserved[i] for col in range(2,10)):
-                    if not any(col in reserved[i] for col in range(2,6)):
-                        res+=1
-                        continue
-                    elif not any(col in reserved[i] for col in range(4,8)):
-                        res+=1
-                        continue
-                    elif not any(col in reserved[i] for col in range(6,10)):
-                        res+=1
-                        continue
-            else:
-                res+=2    
-            
-        
+            if not any(col in reserved[i] for col in range(2,6)):
+                res+=1
+                reserved[i].append(4)
+            if not any(col in reserved[i] for col in range(4,8)):
+                res+=1
+                reserved[i].append(6)
+            if not any(col in reserved[i] for col in range(6,10)):
+                res+=1
+                    
         return res
