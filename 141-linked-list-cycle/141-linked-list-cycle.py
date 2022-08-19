@@ -6,24 +6,9 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        hmap = set()
-        
+        hmap = {}
         while head:
-            if head in hmap:
-                return True
-            hmap.add(head)
+            if head in hmap: return True
+            hmap[head] = head
             head = head.next
-        
-        return False
-        
-        
-        #2 pointers
-        f, s = head, head
-        
-        while f and f.next:
-            f=f.next.next
-            s=s.next
-            if f==s:
-                return True
-        
         return False
