@@ -6,9 +6,9 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        hmap = {}
+        hmap = set()
         while head:
             if head in hmap: return True
-            hmap[head] = head
+            hmap.add(head)
             head = head.next
         return False
