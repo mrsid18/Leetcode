@@ -1,13 +1,18 @@
 class Solution:
     def permute(self, nums):
-        def backtrack(start, end):
-            if start == end:
-                ans.append(nums[:])
-            for i in range(start, end):
-                nums[start], nums[i] = nums[i], nums[start]
-                backtrack(start+1, end)
-                nums[start], nums[i] = nums[i], nums[start]
+        res = []
+        
+        def dfs(sub, ans):
+            if len(ans)==len(nums): 
+                res.append(ans.copy())
+                return
+            
+            for i, n in enumerate(sub):
+                ans.append(n)
+                dfs(sub[0:i]+sub[i+1:], ans)
+                ans.pop()
+        
+        dfs(nums, [])
+        return res
+            
                 
-        ans = []
-        backtrack(0, len(nums))
-        return ans
