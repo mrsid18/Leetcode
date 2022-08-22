@@ -1,14 +1,17 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        def dfs(tmp, start, end):
-            ans.append(tmp[:])
-            for i in range(start, end):
-                if i>start and nums[i]==nums[i-1]: continue
-                tmp.append(nums[i])
-                dfs(tmp, i+1, end)
-                tmp.pop()
-                
-        ans = []
+        res = []
+        def dfs(i, sub):
+            if i==len(nums):
+                if sub not in res: res.append(sub.copy())
+                return
+            
+            sub.append(nums[i])
+            dfs(i+1, sub)
+            
+            sub.pop()
+            dfs(i+1, sub)
+        
         nums.sort()
-        dfs([], 0, len(nums))
-        return ans
+        dfs(0, [])
+        return res
