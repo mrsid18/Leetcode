@@ -6,10 +6,10 @@ class Solution:
         for i in range(len(s)):
             last[s[i]] = i
         
-        l, r = 0, len(s)-1
+        l = 0
         resL, resR = 0, 0
         
-        while resL<=resR and resR<len(s):
+        while resR<len(s):
             l = resL
             while l<=resR:
                 resR = max(resR, last[s[l]])
