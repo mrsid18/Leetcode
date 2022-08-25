@@ -7,23 +7,11 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root):
-        if not root:
-            return 0
-        depth = 0
-        que = deque([root])
+        def depth(node):
+            if not node: return 0
+            
+            res = max(1+depth(node.left), 1+depth(node.right))
+            return res
         
-        while que:
-            length = len(que)
-            for i in range(length):
-                node = que.popleft()
-                if node.left:
-                    que.append(node.left)
-                if node.right:
-                    que.append(node.right)
-            depth+=1
+        return depth(root)
         
-        return depth
-                
-        
-        
-     
