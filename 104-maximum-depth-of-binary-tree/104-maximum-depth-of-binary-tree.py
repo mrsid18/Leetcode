@@ -7,11 +7,6 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root):
-        def depth(node):
-            if not node: return 0
-            
-            res = max(1+depth(node.left), 1+depth(node.right))
-            return res
-        
-        return depth(root)
+        if not root: return 0
+        return max(1+self.maxDepth(root.left), 1+self.maxDepth(root.right))
         
