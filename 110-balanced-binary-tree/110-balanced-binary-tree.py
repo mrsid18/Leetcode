@@ -8,11 +8,16 @@ class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         
         def verify(node):
-            if node is None:
-                return [True,-1]
+            if not node: return [True, -1]
             
-            l,lh = verify(node.left)
-            r,rh = verify(node.right)
-            return [l and r and abs(lh-rh)<=1,max(lh+1,rh+1)]
+            l, lh = verify(node.left)
+            r, rh = verify(node.right)
+            h = max(lh, rh)+1
+            if abs(lh-rh)>1: return [False,h]
+            
+            return [l and r, h]
         
         return verify(root)[0]
+            
+            
+            
