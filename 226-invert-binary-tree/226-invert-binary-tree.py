@@ -5,17 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def traverse(self, root):
-        if root is None:
-            return 
-        
-        temp = root.right
-        root.right = root.left
-        root.left = temp
-        
-        self.traverse(root.left)
-        self.traverse(root.right)
-        
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        self.traverse(root)
+        
+        def traverse(node):
+            if not node: return
+            
+            node.left, node.right = node.right, node.left
+            traverse(node.left)
+            traverse(node.right)
+        
+        traverse(root)
+        
         return root
