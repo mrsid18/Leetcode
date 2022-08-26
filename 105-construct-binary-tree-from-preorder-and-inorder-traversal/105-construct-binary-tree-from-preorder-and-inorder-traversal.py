@@ -8,8 +8,7 @@ class Solution:
     def buildTree(self, pre: List[int], inorder: List[int]) -> Optional[TreeNode]:
         def dfs(i):
             if not i: return
-            p = pre[0]
-            del pre[0]
+            p = pre.pop(0)
             idx = i.index(p)
             
             cur = TreeNode(p)
@@ -18,3 +17,10 @@ class Solution:
             
             return cur
         return dfs(inorder)
+            
+            
+            
+        
+        
+        
+        
