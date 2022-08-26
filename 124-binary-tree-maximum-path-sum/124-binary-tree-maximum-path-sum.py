@@ -13,7 +13,7 @@ class Solution:
             
             l = dfs(node.left)
             r = dfs(node.right) 
-            ans = max(max(l, r)+node.val, node.val)
+            ans = max(l,r, 0)+node.val
             self.res = max(self.res, l+r+node.val, ans)
             
             return ans
