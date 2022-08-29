@@ -1,21 +1,24 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
+        
+        #strictly non-decreasing (increasing queue)
         heights.append(-1)
         
-        q = deque([])
+        stack = []
+        
         res = [0]*len(heights)
         
-        for i in range(len(heights)):
-            while q and heights[i]<heights[q[-1]]:
-                j = q.pop()
-                res[j] += heights[j]*(i-j)
-            q.append(i)
+        for idx, h in enumerate(heights):
+            while stack and h<heights[stack[-1]]:
+                minh = stack.pop()
+                res[minh] = (idx-minh)*heights[minh]
+            stack.append(idx)
         
-        q = deque([])
-        for i in range(len(heights)-2, -2, -1):
-            while q and heights[i]<heights[q[-1]]:
-                j = q.pop()
-                res[j] += heights[j]*(j-i-1)
-            q.append(i)
-            
+        stack = []
+        for idx in range(len(heights)-2, -2, -1):
+            while stack and heights[idx]<heights[stack[-1]]:
+                i = stack.pop()
+                res[i] += (i-idx-1)*heights[i]
+            stack.append(idx)
         return max(res)
+        
