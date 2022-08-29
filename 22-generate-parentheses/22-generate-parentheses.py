@@ -3,17 +3,15 @@ class Solution:
         
         res = []
         
-        def dfs(ans, o, c):
+        def backtrack(ans, o, c):
             if o==n and c==n:
                 res.append(ans)
                 return
             if o<n:
-                dfs(ans+"(", o+1, c)
+                backtrack(ans+"(", o+1, c)
             if c<o:
-                dfs(ans+")", o, c+1)
+                backtrack(ans+")", o, c+1)
             
-        dfs("",0, 0)
+        backtrack("",0, 0)
         
         return res
-            
-            
