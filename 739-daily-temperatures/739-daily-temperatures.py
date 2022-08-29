@@ -1,15 +1,14 @@
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        
+        q = []
+        
         res = [0]*len(temperatures)
         
-        q = deque([])
-        
-        for i in range(len(temperatures)):
-            
-            while q and temperatures[i]>temperatures[q[-1]]:
-                tmp = q.pop()
-                res[tmp] = i - tmp
-            
-            q.append(i)
+        for idx, temp in enumerate(temperatures):
+            while q and temp>temperatures[q[-1]]:
+                i = q.pop()
+                res[i] = idx-i
+            q.append(idx)
         
         return res
