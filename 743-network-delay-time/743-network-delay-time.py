@@ -19,7 +19,7 @@ class Solution:
             visited.add(i)
             
             for c,d in adj[i]:
-                heapq.heappush(minH, [c+p, d])
+                if d not in visited: heapq.heappush(minH, [c+p, d])
                 
         cost.pop(0)
         
