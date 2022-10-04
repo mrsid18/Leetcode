@@ -1,10 +1,13 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        hmap = [0]*26
-        for c in s:
-            hmap[ord(c)-ord('a')]+=1
+        hmap = defaultdict(int)
         
-        for idx, c in enumerate(s):
-            if hmap[ord(c)-ord('a')]==1: return idx
+        res = 0
+        
+        for c in s:
+            hmap[c]+=1
+        
+        for key, val in hmap.items():
+            if val==1: return s.index(key)
         
         return -1
