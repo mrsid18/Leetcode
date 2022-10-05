@@ -10,15 +10,15 @@ class Solution:
         
         res = 0
         
-        resInt = [intervals[0]]
+        resInt = intervals[0]
         
         for i in range(1, len(intervals)):
-            prev_start, prev_end = resInt[-1]
+            prev_start, prev_end = resInt
             start, end = intervals[i]
             if start in range(prev_start, prev_end):
-                resInt[-1][1] = min(prev_end, end)
+                resInt[1] = min(prev_end, end)
                 res+=1
             else:
-                resInt.append(intervals[i])
+                resInt = intervals[i]
                 
         return res
