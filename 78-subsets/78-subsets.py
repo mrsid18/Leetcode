@@ -7,10 +7,10 @@ class Solution:
                 res.append(sub.copy())
                 return
             
-            sub.append(nums[i])
-            dfs(i+1, sub)
+            # sub.append(nums[i])
+            dfs(i+1, sub+[nums[i]])
             
-            sub.pop()
+            # sub.pop()
             dfs(i+1, sub)
             
         dfs(0, [])
