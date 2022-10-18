@@ -16,18 +16,13 @@ One way of thinking can be like
 
 
 class Solution:
-    def numSquares(self, n: int) -> int:
-        def isPerfectSqr(x):
-            return x**.5 % 1 == 0
-        dp = [n]*(n+1)
-        s = []
-        for i in range(1, n+1):
-            if isPerfectSqr(i):
-                dp[i]=1
-                s.append(i)
-            else:
-                for j in range(len(s)-1, -1, -1):
-                    dp[i] = min(dp[s[j]]+dp[i-s[j]], dp[i])
-                    if dp[i]==2: continue
-               
-        return dp[n]
+    def numSquares(self, n):
+        squares = [i**2 for i in range(1, int(n**0.5)+1)]
+        d, q, nq = 1, {n}, set()
+        while q:
+            for node in q:
+                for square in squares:
+                    if node == square: return d
+                    if node < square: break
+                    nq.add(node-square)
+            q, nq, d = nq, set(), d+1
