@@ -17,7 +17,17 @@ One way of thinking can be like
 
 class Solution:
     def numSquares(self, n: int) -> int:
-        dp = [0] + [float('inf')]*n
+        def isPerfectSqr(x):
+            return x**.5 % 1 == 0
+        dp = [n]*(n+1)
+        s = []
         for i in range(1, n+1):
-            dp[i] = min(dp[i-j*j] for j in range(1, int(i**0.5)+1)) + 1
+            if isPerfectSqr(i):
+                dp[i]=1
+                s.append(i)
+            else:
+                for j in range(len(s)-1, -1, -1):
+                    dp[i] = min(dp[s[j]]+dp[i-s[j]], dp[i])
+                    if dp[i]==2: continue
+               
         return dp[n]
