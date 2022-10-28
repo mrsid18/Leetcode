@@ -7,6 +7,8 @@ class Solution:
             if add==target: return l+1, r+1
             if add>target:
                 r-=1
+                while r and numbers[r]==numbers[r+1]:
+                    r-=1
             else:
                 l+=1
                 while l and numbers[l]==numbers[l-1]:
