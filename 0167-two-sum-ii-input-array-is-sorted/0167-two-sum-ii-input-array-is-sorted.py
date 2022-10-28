@@ -9,5 +9,5 @@ class Solution:
                 r-=1
             else:
                 l+=1
-                while l and numbers[l]==numbers[l-1]:
-                    l+=1
+                # while l and numbers[l]==numbers[l-1]:
+                #     l+=1
